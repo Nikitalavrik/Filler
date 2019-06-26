@@ -17,11 +17,13 @@ void	free_map(t_map *main_map)
 	int	i;
 
 	i = 0;
-	while (i < main_map->x)
+	while (i < main_map->size->y)
 	{
 		ft_memdel((void **)&(main_map->elem[i]));
 		i++;
 	}
+	ft_memdel((void **)&(main_map->size));
 	ft_memdel((void **)&(main_map->elem));
 	ft_memdel((void **)&main_map);
+	main_map = NULL;
 }

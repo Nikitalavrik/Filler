@@ -12,11 +12,13 @@
 
 NAME = nlavrine
 
-SRC =	grap_input.c	\
+SRC =	main.c	\
 		get_next_line.c	\
 		free_map.c		\
 		output_map.c	\
 		parse.c			\
+		init_map.c		\
+		put_tetramin.c	\
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
@@ -46,16 +48,3 @@ fclean: clean
 	@rm $(NAME)
 
 re: fclean all
-# $(NAME): $(OBJS)
-
-
-
-# clean:
-# 	rm -f $(OBJS)
-# 	@rm -rf $(OBJ_DIR)
-
-# fclean: clean
-# 	rm -f $(NAME)
-
-# re: fclean all
-# @$(CC) $(SRCS) get_next_line/libft/libft.a $(FLAGS) get_next_line/get_next_line.c -o $(NAME) 

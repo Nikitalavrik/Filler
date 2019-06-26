@@ -17,10 +17,37 @@ void	output_map(t_map main_map)
 	int	i;
 
 	i = 0;
-	printf("x = %i n = %i\n", main_map.x , main_map.y);
-	while (i < main_map.x)
+	printf("x = %i y = %i\n", main_map.size->x , main_map.size->y);
+	while (i < main_map.size->y)
 	{
 		printf("%s\n", main_map.elem[i]);
+		i++;
+	}
+
+}
+
+void	output_addinfo(t_map t)
+{
+	printf("---------------------------\n");
+	printf("x = %i y = %i\nb_x = %i b_y = %i\ne_x = %i e_y = %i\n",
+	t.size->x, t.size->y, t.b_x, t.b_y, t.e_x, t.e_y);
+}
+
+void	output_matr(int	**matr, int n, int m)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < n)
+	{
+		j = 0;
+		while (j < m)
+		{
+			printf("%3i ", matr[i][j]);
+			j++;
+		}
+		printf("\n");
 		i++;
 	}
 }
