@@ -25,7 +25,7 @@ char	*ft_strfromcpy(char *s1, char *s2, size_t from)
 
 void	check_tmp(char **line, char *tmp, size_t *size, int ret)
 {
-	*size += (!ret) ? ft_strlenc(tmp, '\n') : ret;
+	*size += (!ret) ? ft_strlenc(tmp, '\n') : (size_t)ret;
 	*line = ft_realloc(*line, ft_strlen(*line), *size);
 	*line = ft_strcat(*line, tmp);
 }
@@ -40,12 +40,12 @@ int		get_find_and_clear(char **tmp, int finded, int ret)
 
 int		get_next_line(const int fd, char **line)
 {
-	static	char	*tmp[OPEN_MAX + 1];
+	static	char	*tmp[4096 + 1];
 	size_t			size;
 	int				finded;
 	int				ret;
 
-	if ((read(fd, tmp[OPEN_MAX], 0) != 0) || !line)
+	if ((read(fd, tmp[4096], 0) != 0) || !line)
 		return (-1);
 	tmp[fd] = (!tmp[fd]) ? ft_strnew(BUFF_SIZE) : tmp[fd];
 	finded = ft_get_index(tmp[fd], '\n');

@@ -18,11 +18,13 @@ int		main(void)
 	char	*line;
 	t_map	*main_map;
 	t_map	*tetramino;
+	t_coords answer;
 
 	line = NULL;
 	main_map = NULL;
 	tetramino = NULL;
 	fd = open("tests/test", O_RDONLY);
+	// fd = 0;
 	init_map(&main_map);
 	init_map(&tetramino);
 
@@ -32,18 +34,17 @@ int		main(void)
 	parse_size(line, tetramino, fd, 1);
 
 	tetramino = reshape(tetramino);
-	// printf("%i\n", MOD(20, 100));
-	put_tetramin(main_map, tetramino);
+	answer = put_tetramin(main_map, tetramino);
 	/* output */
-	// output_map(*main_map, 1);
-	// output_map(*tetramino, 1);
+	// output_map(*main_map);
+	// output_map(*tetramino);
 	// output_addinfo(*main_map);
 	// output_addinfo(*tetramino);
 
 	/* free */
-	free_map(main_map);
-	free_map(tetramino);
-	
+	// free_map(main_map);
+	// free_map(tetramino);
+	printf("%i %i\n", answer.y, answer.x);
 	/* leaks */
 	// system("leaks nlavrine");
 	return (0);

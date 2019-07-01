@@ -51,3 +51,9 @@ void	output_matr(int	**matr, int n, int m)
 		i++;
 	}
 }
+
+void	output_coords(t_coords coord)
+{
+	printf("x = %i y = %i dist_sum = %i\n",
+	coord.x, coord.y, coord.dist_sum);
+}

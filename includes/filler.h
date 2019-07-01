@@ -17,13 +17,14 @@
 # include <sys/stat.h> 
 # include <fcntl.h>
 
-#define MOD_DIV(x, y) (x - y) >= 0 ? x - y : -(x - y)
-#define MOD_SUM(x, y) (x + y) >= 0 ? x + y : -(x + y)
+# define MOD(x) ((x > 0) ? (x) : (-x))
+# define NONE 500
 
 typedef	struct	s_coords
 {
 	int x;
 	int y;
+	int dist_sum;
 }				t_coords;
 
 typedef struct	s_map
@@ -36,13 +37,16 @@ typedef struct	s_map
 	char		**elem;
 }				t_map;
 
-void	free_map(t_map *main_map);
-void	output_map(t_map main_map);
-void	parse_size(char *line, t_map *main_map, int fd, int options);
-void	output_addinfo(t_map t);
-t_map	*reshape(t_map *tetramino);
-void	init_map(t_map **main_map);
-void	put_tetramin(t_map *main_map, t_map *tet);
-void	output_matr(int	**matr, int n, int m);
+void		free_map(t_map *main_map);
+void		output_map(t_map main_map);
+void		parse_size(char *line, t_map *main_map, int fd, int options);
+void		output_addinfo(t_map t);
+t_map		*reshape(t_map *tetramino);
+void		init_map(t_map **main_map);
+t_coords	put_tetramin(t_map *main_map, t_map *tet);
+void		output_matr(int	**matr, int n, int m);
+int			find_x(int y, int x, t_map main_map);
+void		output_coords(t_coords coord);
+size_t  	modulo(int x);
 
 #endif

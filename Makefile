@@ -10,7 +10,7 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME = nlavrine
+NAME = nlavrine.filler
 
 SRC =	main.c	\
 		get_next_line.c	\
@@ -19,6 +19,7 @@ SRC =	main.c	\
 		parse.c			\
 		init_map.c		\
 		put_tetramin.c	\
+		find_elem.c		\
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
@@ -38,7 +39,7 @@ $(NAME): $(OBJS)
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		@mkdir -p $(OBJ_DIR)
-		@$(CC) $(FLAGS) -o $@ -c $< -I $(H_DIR)
+		@$(CC) $(FLAGS) -o $@ -c $< $(LIB) -I $(H_DIR)
 
 clean:
 	@rm -f $(OBJS)
@@ -48,3 +49,6 @@ fclean: clean
 	@rm $(NAME)
 
 re: fclean all
+
+lin:
+	$(CC) $(SRCS) libft/*.c -o $(NAME) -I $(H_DIR) -g

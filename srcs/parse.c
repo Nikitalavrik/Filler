@@ -44,14 +44,14 @@ void	parse_size(char *line, t_map *main_map, int fd, int options)
 t_map	*new_size(t_map *t)
 {
 	int	i;
-	// int	j;
 	t_map *new_tet;
 
 	new_tet = NULL;
 	init_map(&new_tet);
-	i = t->e_x - t->b_x;
-	new_tet->size->x = (i > 0 ? i : -i) + 1;
-	new_tet->size->y = t->e_y - t->b_y + 1;
+	new_tet->size->x = modulo(t->e_x - t->b_x) + 1;
+	new_tet->size->y = modulo(t->e_y - t->b_y) + 1;
+	new_tet->b_x = t->b_x;
+	new_tet->b_y= t->b_y;
 	i = t->b_y;
 	new_tet->elem = ft_memalloc(sizeof(char *) * new_tet->size->y);
 	while (i < t->e_y + 1)
