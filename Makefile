@@ -39,7 +39,7 @@ $(NAME): $(OBJS)
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		@mkdir -p $(OBJ_DIR)
-		@$(CC) $(FLAGS) -o $@ -c $< $(LIB) -I $(H_DIR)
+		@$(CC) $(FLAGS) -o $@ -c $< -I $(H_DIR)
 
 clean:
 	@rm -f $(OBJS)

@@ -40,7 +40,7 @@ int		get_find_and_clear(char **tmp, int finded, int ret)
 
 int		get_next_line(const int fd, char **line)
 {
-	static	char	*tmp[4096 + 1];
+	static	char	*tmp[OPEN_MAX + 1];
 	size_t			size;
 	int				finded;
 	int				ret;

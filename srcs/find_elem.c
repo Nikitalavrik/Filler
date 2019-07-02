@@ -20,7 +20,6 @@ t_coords	find_left(int y, int x, t_map main_map, int r)
             ret.y = y;
             return (ret);
         }
-			
         i++;
 	}
     ret.x = NONE;
@@ -61,7 +60,7 @@ int     go_forward(t_coords pos, int r, t_map main_map)
     {
         tmp_l = NONE;
         tmp_r = NONE;
-        // printf("x = %i y = %i\n", )
+
         coord = find_left(pos.y + k, pos.x, main_map, r);
         if (coord.y != NONE)
             tmp_l = modulo(pos.y - coord.y) + modulo(pos.x - coord.x);
@@ -70,8 +69,6 @@ int     go_forward(t_coords pos, int r, t_map main_map)
             tmp_r = modulo(pos.y - coord.y) + modulo(pos.x - coord.x);
         if (tmp_l != NONE || tmp_r != NONE)
             return (tmp_l > tmp_r ? tmp_r : tmp_l);        
-        // k = -k;
-        // if (k > 0)
         k++;
     }
     return (NONE);
@@ -86,7 +83,8 @@ int		find_x(int y, int x, t_map main_map)
 	r = 1;
     cord.x = x;
     cord.y = y;
-	while (r < main_map.size->y + 1)
+    
+	while (r < main_map.size->y + main_map.size->x)
 	{
         tmp = go_forward(cord, r, main_map);
         if (tmp != NONE)

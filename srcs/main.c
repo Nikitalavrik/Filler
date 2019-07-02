@@ -12,40 +12,54 @@
 
 #include "filler.h"
 
-int		main(void)
+int		solve(int fd)
 {
-	int		fd;
 	char	*line;
 	t_map	*main_map;
 	t_map	*tetramino;
+	t_map	*new_tet;
 	t_coords answer;
-
-	line = NULL;
-	main_map = NULL;
-	tetramino = NULL;
-	fd = open("tests/test", O_RDONLY);
-	// fd = 0;
-	init_map(&main_map);
-	init_map(&tetramino);
-
-
 	/* parsing */
-	parse_size(line, main_map, fd, 0);
-	parse_size(line, tetramino, fd, 1);
 
-	tetramino = reshape(tetramino);
-	answer = put_tetramin(main_map, tetramino);
-	/* output */
-	// output_map(*main_map);
-	// output_map(*tetramino);
-	// output_addinfo(*main_map);
-	// output_addinfo(*tetramino);
+	while (1)
+	{
+		
+		clear_coords(&answer);
+		line = NULL;
+		main_map = init_map();
+		parse_size(line, main_map, fd, 0);
+
+		tetramino = init_map();
+		parse_size(line, tetramino, fd, 1);
+
+		// printf("%i %i\n", tetramino->size->x, tetramino->elem[0][1]);
+		new_tet = reshape(tetramino);
+		answer = put_tetramin(main_map, new_tet);
+	
 
 	/* free */
-	// free_map(main_map);
-	// free_map(tetramino);
-	printf("%i %i\n", answer.y, answer.x);
+		free_map(main_map);
+		free_map(new_tet);
+		free_map(tetramino);
+		ft_memdel((void **)&line);
+		printf("%i %i\n", answer.y, answer.x);
+	}
 	/* leaks */
 	// system("leaks nlavrine");
+	return (0);
+}
+
+int		main(void)
+{
+	// FILE *fp;
+	// fp = fopen("log.txt", "a");
+	// fprintf(fp, "o = %i\n", 5);
+	int fd;
+
+	// fd = open("tests/test2", O_RDONLY);
+	fd = 0;
+
+	solve(fd);
+
 	return (0);
 }

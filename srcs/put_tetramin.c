@@ -25,6 +25,7 @@ int		**generate_dist(t_map *main_map)
 	{
 		j = 0;
 		dist[i] = ft_memalloc(sizeof(int) * main_map->size->x);
+		
 		while (j < main_map->size->x)
 		{
 			dist[i][j] = find_x(i, j, *main_map);
@@ -52,6 +53,8 @@ int		can_put(t_coords coord, t_map *main_map, t_map *tet, int **dist)
 		j = 0;
 		while (j < tet->size->x && overlay <= 1)
 		{
+			if (dist[coord.y + i][coord.x + j] == 0)
+				overlay += 2;
 			coord.dist_sum += dist[coord.y + i][coord.x + j];
 			if ((main_map->elem[coord.y + i][coord.x + j] == 'O' ||\
 				main_map->elem[coord.y + i][coord.x + j] == 'o') &&\
@@ -72,9 +75,8 @@ t_coords	check_tetramin(t_map *main_map, t_map *tet, int **dist)
 	t_coords answer;
 
 	i = 0;
-	answer.dist_sum = NONE;
-	answer.x = 0;
-	answer.y = 0;
+	clear_coords(&coord);
+	clear_coords(&answer);
 	while (i < main_map->size->y)
 	{
 		j = 0;
@@ -85,6 +87,7 @@ t_coords	check_tetramin(t_map *main_map, t_map *tet, int **dist)
 			coord.dist_sum = can_put(coord, main_map, tet, dist);
 			if (coord.dist_sum && coord.dist_sum < answer.dist_sum)
 			{
+				// printf("11111\n");
 				answer.x = coord.x;
 				answer.y = coord.y;
 				answer.dist_sum = coord.dist_sum;
@@ -101,15 +104,17 @@ t_coords	put_tetramin(t_map *main_map, t_map *tet)
 	int		**dist;
 	t_coords	answer;
 
-	tet = (void *)tet;
+
 	dist = generate_dist(main_map);
 	// output_map(*main_map);
 	// output_map(*tet);
-	output_matr(dist, main_map->size->y, main_map->size->x);
+	// output_matr(dist, main_map->size->y, main_map->size->x);
 	answer = check_tetramin(main_map, tet, dist);
+	free_matr(dist, main_map->size->y);
 	// output_coords(answer);
-	// answer.x -= tet->b_x;
-	// answer.y -= tet->b_y;
+	// output_addinfo(*tet);
+	answer.x -= tet->b_x;
+	answer.y -= tet->b_y;
 	
 	return (answer);
 }

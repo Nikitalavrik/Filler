@@ -19,11 +19,30 @@ void	free_map(t_map *main_map)
 	i = 0;
 	while (i < main_map->size->y)
 	{
-		ft_memdel((void **)&(main_map->elem[i]));
+		ft_memdel((void **)&main_map->elem[i]);
 		i++;
 	}
-	ft_memdel((void **)&(main_map->size));
-	ft_memdel((void **)&(main_map->elem));
+	ft_memdel((void **)&main_map->size);
+	ft_memdel((void **)&main_map->elem);
 	ft_memdel((void **)&main_map);
-	main_map = NULL;
+}
+
+void	free_matr(int **matr, int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		ft_memdel((void **)&matr[i]);
+		i++;
+	}
+	ft_memdel((void **)&matr);
+}
+
+void	clear_coords(t_coords *cords)
+{
+	cords->x = 0;
+	cords->y = 0;
+	cords->dist_sum = BIG_VAL;
 }

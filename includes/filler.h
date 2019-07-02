@@ -19,6 +19,7 @@
 
 # define MOD(x) ((x > 0) ? (x) : (-x))
 # define NONE 500
+# define BIG_VAL 50000000
 
 typedef	struct	s_coords
 {
@@ -42,11 +43,14 @@ void		output_map(t_map main_map);
 void		parse_size(char *line, t_map *main_map, int fd, int options);
 void		output_addinfo(t_map t);
 t_map		*reshape(t_map *tetramino);
-void		init_map(t_map **main_map);
+t_map		*init_map(void);
 t_coords	put_tetramin(t_map *main_map, t_map *tet);
 void		output_matr(int	**matr, int n, int m);
 int			find_x(int y, int x, t_map main_map);
 void		output_coords(t_coords coord);
 size_t  	modulo(int x);
+void		free_matr(int **matr, int size);
+void		clear_coords(t_coords *cords);
+void		foutput_map(t_map main_map);
 
 #endif

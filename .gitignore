@@ -1,6 +1,5 @@
 .vscode
 obj
-nlavrine
+nlavrine.filler
 get_next_line.c
 tests
-
