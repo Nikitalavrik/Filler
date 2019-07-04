@@ -23,6 +23,11 @@ t_map	*init_map(t_map *main_map)
 	main_map->b_y = 0;
 	main_map->e_x = 0;
 	main_map->e_y = 0;
-	main_map->elem= NULL;
+	main_map->elem = NULL;
 	return (main_map);
+}
+
+size_t	modulo(int x)
+{
+	return (x > 0 ? x : -x);
 }

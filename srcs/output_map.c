@@ -17,13 +17,12 @@ void	output_map(t_map *main_map)
 	int	i;
 
 	i = 0;
-	printf("x = %i y = %i\n", main_map->size->x , main_map->size->y);
+	printf("x = %i y = %i\n", main_map->size->x, main_map->size->y);
 	while (i < main_map->size->y)
 	{
 		printf("%s\n", main_map->elem[i]);
 		i++;
 	}
-
 }
 
 void	output_addinfo(t_map *t)
@@ -33,7 +32,7 @@ void	output_addinfo(t_map *t)
 	t->size->x, t->size->y, t->b_x, t->b_y, t->e_x, t->e_y);
 }
 
-void	output_matr(int	**matr, int n, int m)
+void	output_matr(int **matr, int n, int m)
 {
 	int i;
 	int j;
@@ -60,12 +59,12 @@ void	output_coords(t_coords coord)
 
 void	foutput_map(t_map *main_map)
 {
-	int	i;
-	FILE *fp;
+	int		i;
+	FILE	*fp;
 
-	fp = fopen ("log.txt", "w");
+	fp = fopen("log.txt", "w");
 	i = 0;
-	fprintf(fp, "x = %i y = %i\n", main_map->size->x , main_map->size->y);
+	fprintf(fp, "x = %i y = %i\n", main_map->size->x, main_map->size->y);
 	while (i < main_map->size->y)
 	{
 		fprintf(fp, "%s\n", main_map->elem[i]);

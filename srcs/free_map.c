@@ -39,9 +39,9 @@ void	free_matr(int **matr, int size)
 	ft_memdel((void **)&matr);
 }
 
-void	clear_coords(t_coords *cords)
+void	write_coords(t_coords *cords, int x, int y, int dist)
 {
-	cords->x = -42;
-	cords->y = -42;
-	cords->dist_sum = BIG_VAL;
+	cords->x = x;
+	cords->y = y;
+	cords->dist_sum = dist;
 }
