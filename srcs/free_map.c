@@ -24,7 +24,6 @@ void	free_map(t_map *main_map)
 	}
 	ft_memdel((void **)&main_map->size);
 	ft_memdel((void **)&main_map->elem);
-	ft_memdel((void **)&main_map);
 }
 
 void	free_matr(int **matr, int size)
@@ -42,7 +41,7 @@ void	free_matr(int **matr, int size)
 
 void	clear_coords(t_coords *cords)
 {
-	cords->x = 0;
-	cords->y = 0;
+	cords->x = -42;
+	cords->y = -42;
 	cords->dist_sum = BIG_VAL;
 }

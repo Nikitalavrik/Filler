@@ -19,23 +19,19 @@
 	
 // }
 
-void	parse_size(char *line, t_map *main_map, int fd, int options)
+t_map	*parse_size(t_map *main_map, char *line, int options)
 {
 	int i;
 	char *str;
-	// FILE *fp;
 
 	i = 0;
-	// fp = fopen("log.txt", "a");
-	// fprintf(fp, "options = %i\n", options);
-	get_next_line(fd, &line);
-	while (line[0] != 'P')
+	main_map = init_map(main_map);
+	get_next_line(0, &line);
+	while (line[0] != 'P' && line[0] != ' ' && line[0] != '0')
 	{
 		ft_memdel((void **)&line);
-		get_next_line(fd, &line);
+		get_next_line(0, &line);
 	}
-	// printf("111111\n");
-	// check_player(fd, line, main_map);
 	while (!ft_isdigit(line[i]))
 		i++;
 	main_map->size->y = ft_atoi(&line[i]);
@@ -45,10 +41,8 @@ void	parse_size(char *line, t_map *main_map, int fd, int options)
 	ft_memdel((void **)&line);
 	main_map->elem = (char **)ft_memalloc(sizeof(char *) * main_map->size->y);
 	i = 0;
-	
-	while (i < (main_map->size->y + 1 - options) && get_next_line(fd, &line) != -1)
+	while (i < (main_map->size->y + 1 - options) && get_next_line(0, &line) != -1)
 	{
-		// printf("i = %i\n", i);
 		if (i > 0 || options)
 		{
 			str = ft_memalloc(sizeof(char) * main_map->size->x + 1);
@@ -57,6 +51,7 @@ void	parse_size(char *line, t_map *main_map, int fd, int options)
 		ft_memdel((void **)&line);
 		i++;
 	}
+	return (main_map);
 }
 
 t_map	*new_size(t_map *t)
@@ -65,7 +60,8 @@ t_map	*new_size(t_map *t)
 	char *str;
 	t_map *new_tet;
 
-	new_tet = init_map();
+	new_tet = NULL;
+	new_tet = init_map(new_tet);
 	new_tet->size->x = modulo(t->e_x - t->b_x) + 1;
 	new_tet->size->y = modulo(t->e_y - t->b_y) + 1;
 	new_tet->b_x = t->b_x;

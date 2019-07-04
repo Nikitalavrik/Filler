@@ -3,3 +3,5 @@ obj
 nlavrine.filler
 get_next_line.c
 tests
+log.txt
+filler.trace
