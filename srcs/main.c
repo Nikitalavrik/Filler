@@ -39,7 +39,10 @@ int		solve(t_map *main_map, t_map *tetramino, t_map *new_tet, char *line)
 		new_tet = reshape(tetramino, flag);
 		answer = put_tetramin(main_map, new_tet);
 		if (answer.x <= -42 || answer.y <= -42)
+		{
+			ft_putstr("0 0\n");
 			return (0);
+		}
 		ft_putnbr(answer.y);
 		ft_putchar(' ');
 		ft_putnbr(answer.x);
