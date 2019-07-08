@@ -28,6 +28,7 @@ t_map	*parse_size(t_map *main_map, char *line, int opt)
 	int		i;
 	char	*str;
 
+	line = NULL;
 	main_map = init_map(main_map);
 	line = skip_lines(line);
 	i = ft_get_index(line, ' ');

@@ -35,7 +35,7 @@ OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-		@$(CC) $(FLAGS) $(OBJS) $(LIB) -o $(NAME) -fsanitize=address
+		@$(CC) $(FLAGS) $(OBJS) $(LIB) -o $(NAME)
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		@mkdir -p $(OBJ_DIR)

@@ -116,7 +116,7 @@ int			find_x(int y, int x, t_map *main_map)
 	r = 1;
 	cord.x = x;
 	cord.y = y;
-	while (r < main_map->size->x)
+	while (r < main_map->size->x + main_map->size->y / 2)
 	{
 		tmp1 = go_forward(cord, r, main_map);
 		tmp2 = go_down(cord, r, main_map);

@@ -61,8 +61,8 @@ int			can_put(t_coords coord, t_map *main_map, t_map *tet, int **dist)
 
 	i = 0;
 	overlay = 0;
-	if (coord.x + tet->size->x >= main_map->size->x ||\
-								coord.y + tet->size->y >= main_map->size->y)
+	if (coord.x + tet->size->x > main_map->size->x ||\
+								coord.y + tet->size->y > main_map->size->y)
 		return (0);
 	while (i < tet->size->y && overlay <= 1)
 	{

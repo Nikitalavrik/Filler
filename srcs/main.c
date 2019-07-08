@@ -32,7 +32,6 @@ int		solve(t_map *main_map, t_map *tetramino, t_map *new_tet, char *line)
 
 	while (1)
 	{
-		line = NULL;
 		main_map = parse_size(main_map, line, 0);
 		tetramino = parse_size(tetramino, line, 1);
 		flag = 0;
@@ -52,8 +51,6 @@ int		solve(t_map *main_map, t_map *tetramino, t_map *new_tet, char *line)
 		free_map(tetramino);
 		ft_memdel((void **)&line);
 	}
-	ft_memdel((void **)&main_map);
-	ft_memdel((void **)&tetramino);
 	return (0);
 }
 
@@ -71,5 +68,7 @@ int		main(void)
 	main_map = init_map(main_map);
 	get_player(main_map);
 	solve(main_map, tetramino, new_tet, line);
+	ft_memdel((void **)&main_map);
+	ft_memdel((void **)&tetramino);
 	return (0);
 }
