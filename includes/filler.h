@@ -45,8 +45,11 @@ t_map			*parse_size(t_map *main_map, char *line, int options);
 t_map			*reshape(t_map *tetramino, int flag);
 t_map			*init_map(t_map *main_map);
 t_coords		put_tetramin(t_map *main_map, t_map *tet);
-int				find_x(int y, int x, t_map *main_map);
-size_t			modulo(int x);
+
+int				find_left(int y, int x, t_map *main_map);
+void			find_down(int **dist, t_map *main_map);
+void			find_right(int **dist, t_map *main_map);
+void			find_up(int **dist, t_map *main_map);
 
 void			foutput_map(t_map *main_map);
 void			output_addinfo(t_map *t);

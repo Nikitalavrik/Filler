@@ -12,117 +12,76 @@
 
 #include "filler.h"
 
-t_coords	find_left(int y, int x, t_map *main_map, int r)
+int			minim(int x, int y)
 {
-	int			i;
-	t_coords	ret;
+	return (x > y ? y : x);
+}
+
+int			find_left(int y, int x, t_map *main_map)
+{
+	int	i;
 
 	i = 0;
-	while (i < r && x - i >= 0)
+	while (x - i >= 0)
 	{
 		if (main_map->elem[y][x - i] == main_map->player2 ||\
 		main_map->elem[y][x - i] == (main_map->player2 + 32))
+			return (i);
+		i++;
+	}
+	return (BIG_VAL);
+}
+
+void		find_down(int **dist, t_map *main_map)
+{
+	int		i;
+	int		j;
+
+	i = 1;
+	while (i < main_map->size->y)
+	{
+		j = 0;
+		while (j < main_map->size->x)
 		{
-			ret.x = x - i;
-			ret.y = y;
-			return (ret);
+			dist[i][j] = minim(dist[i - 1][j] + 1, dist[i][j]);
+			j++;
 		}
 		i++;
 	}
-	ret.x = NONE;
-	ret.y = NONE;
-	return (ret);
 }
 
-t_coords	find_right(int y, int x, t_map *main_map, int r)
+void		find_right(int **dist, t_map *main_map)
 {
-	int			i;
-	t_coords	ret;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (i < r && x + i < main_map->size->x)
+	while (i < main_map->size->y)
 	{
-		if (main_map->elem[y][x + i] == main_map->player2 ||\
-		main_map->elem[y][x + i] == (main_map->player2 + 32))
+		j = main_map->size->x - 2;
+		while (j >= 0)
 		{
-			ret.x = x + i;
-			ret.y = y;
-			return (ret);
+			dist[i][j] = minim(dist[i][j + 1] + 1, dist[i][j]);
+			j--;
 		}
 		i++;
 	}
-	ret.x = NONE;
-	ret.y = NONE;
-	return (ret);
 }
 
-int			go_forward(t_coords pos, int r, t_map *main_map)
+void		find_up(int **dist, t_map *main_map)
 {
-	int			k;
-	int			tmp_l;
-	int			tmp_r;
-	t_coords	coord;
+	int		i;
+	int		j;
 
-	k = 0;
-	while (k <= r && pos.y + k < main_map->size->y && pos.y + k >= 0 && -k <= r)
+	i = main_map->size->y - 2;
+	while (i >= 0)
 	{
-		tmp_l = NONE;
-		tmp_r = NONE;
-		coord = find_left(pos.y + k, pos.x, main_map, r - k);
-		if (coord.y != NONE)
-			tmp_l = modulo(pos.y - coord.y) + modulo(pos.x - coord.x);
-		coord = find_right(pos.y + k, pos.x, main_map, r - k);
-		if (coord.y != NONE)
-			tmp_r = modulo(pos.y - coord.y) + modulo(pos.x - coord.x);
-		if (tmp_l != NONE || tmp_r != NONE)
-			return (tmp_l > tmp_r ? tmp_r : tmp_l);
-		k++;
+		j = 0;
+		while (j < main_map->size->x)
+		{
+			dist[i][j] = minim(dist[i + 1][j] + 1, dist[i][j]);
+			j++;
+		}
+		i--;
 	}
-	return (NONE);
-}
-
-int			go_down(t_coords pos, int r, t_map *main_map)
-{
-	int			k;
-	int			tmp_l;
-	int			tmp_r;
-	t_coords	coord;
-
-	k = 0;
-	while (k <= r && pos.y - k >= 0)
-	{
-		tmp_l = NONE;
-		tmp_r = NONE;
-		coord = find_left(pos.y - k, pos.x, main_map, r - k);
-		if (coord.y != NONE)
-			tmp_l = modulo(pos.y - coord.y) + modulo(pos.x - coord.x);
-		coord = find_right(pos.y - k, pos.x, main_map, r - k);
-		if (coord.y != NONE)
-			tmp_r = modulo(pos.y - coord.y) + modulo(pos.x - coord.x);
-		if (tmp_l != NONE || tmp_r != NONE)
-			return (tmp_l > tmp_r ? tmp_r : tmp_l);
-		k++;
-	}
-	return (NONE);
-}
-
-int			find_x(int y, int x, t_map *main_map)
-{
-	int			r;
-	t_coords	cord;
-	int			tmp1;
-	int			tmp2;
-
-	r = 1;
-	cord.x = x;
-	cord.y = y;
-	while (r < main_map->size->x + main_map->size->y / 2)
-	{
-		tmp1 = go_forward(cord, r, main_map);
-		tmp2 = go_down(cord, r, main_map);
-		if (tmp1 != NONE || tmp2 != NONE)
-			return (tmp1 > tmp2 ? tmp2 : tmp1);
-		r++;
-	}
-	return (NONE);
 }

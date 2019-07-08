@@ -26,11 +26,14 @@ int			**generate_dist(t_map *main_map)
 		dist[i] = ft_memalloc(sizeof(int) * main_map->size->x);
 		while (j < main_map->size->x)
 		{
-			dist[i][j] = find_x(i, j, main_map);
+			dist[i][j] = find_left(i, j, main_map);
 			j++;
 		}
 		i++;
 	}
+	find_right(dist, main_map);
+	find_down(dist, main_map);
+	find_up(dist, main_map);
 	return (dist);
 }
 

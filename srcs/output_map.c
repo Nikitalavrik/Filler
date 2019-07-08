@@ -43,7 +43,7 @@ void	output_matr(int **matr, int n, int m)
 		j = 0;
 		while (j < m)
 		{
-			printf("%3i ", matr[i][j]);
+			printf("%6i ", matr[i][j]);
 			j++;
 		}
 		printf("\n");

@@ -48,7 +48,7 @@ root.configure(bg = "#d3d3d3")
 
 
 
-resourceLabel = Label(root, text="Resource", font="Impact 25", fg="#beff00", bg="#d3d3d3")
+resourceLabel = Label(root, text="Resource", font="Impact 25", fg="#FF00FF", bg="#d3d3d3")
 player1Label = Label(root, text="Player 1", font="Impact 30", fg="#beff00", bg="#d3d3d3")
 player2Label = Label(root, text="Player 2", font="Impact 30", fg="#ff6464", bg="#d3d3d3")
 mapLabel = Label(root, text="Map", font="Impact 30", fg="#FF00FF", bg="#d3d3d3")
