@@ -14,7 +14,6 @@
 # define FT_FILLER_H
 
 # include "get_next_line.h"
-# include <stdio.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 
@@ -46,6 +45,7 @@ t_map			*reshape(t_map *tetramino, int flag);
 t_map			*init_map(t_map *main_map);
 t_coords		put_tetramin(t_map *main_map, t_map *tet);
 
+size_t			modulo(int x);
 int				find_left(int y, int x, t_map *main_map);
 void			find_down(int **dist, t_map *main_map);
 void			find_right(int **dist, t_map *main_map);

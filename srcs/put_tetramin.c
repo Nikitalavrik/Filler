@@ -72,7 +72,7 @@ int			can_put(t_coords coord, t_map *main_map, t_map *tet, int **dist)
 		j = 0;
 		while (j < tet->size->x && overlay <= 1)
 		{
-			if (dist[coord.y + i][coord.x + j] == 0)
+			if (dist[coord.y + i][coord.x + j] == 0 && tet->elem[i][j] == '*')
 				overlay += 2;
 			if ((main_map->elem[coord.y + i][coord.x + j] == main_map->player1\
 			|| main_map->elem[coord.y + i][coord.x + j] == main_map->player1 +\
